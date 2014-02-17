@@ -5,9 +5,9 @@ Welcome to the GitHub repository for the data visualization using R and ggplot w
 ### NOTE: This will be a work in progress until late July 2014.
 
 **Location and time:** 
-Sunday, August 10, 2014
-8:00 AM - 11:30 AM
-Location TBD
+Sunday, August 10, 2014    
+8:00 AM - 11:30 AM    
+Location TBD    
 
 ## Organizers
 [Naupaka Zimmerman](http://naupaka.net) and [Andrew Tredennick](http://warnercnr.colostate.edu/~atredenn/).
