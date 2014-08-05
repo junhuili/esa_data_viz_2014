@@ -3,10 +3,6 @@ Two simple examples showing how to make quick-and-easy study area maps using ggm
 
 ---
 
-```{r setup, include = FALSE}
-opts_chunk$set(fig.cap="")
-```
-
 ```{r maps, warning = FALSE}
 # Clear the workspace
 rm(list=ls()) 
