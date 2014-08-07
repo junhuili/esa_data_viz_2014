@@ -22,7 +22,10 @@ mapCA <- get_map(location="california", source ="stamen", maptype="toner", zoom=
 # Put it together using 'ggmap' and the standard ggplot call to geom_point
 ggmap(mapCA, extent="device")+
   geom_point(data=confPt, aes(x=lon, y=lat), color="dodgerblue", size=5)
+```
+![](california.pdf)
 
+```{r maps2, warning = FALSE}
 # More examples
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                   MAP OF LOGAN WITH BEAVER MTN SKI RESORT                     #
@@ -38,4 +41,5 @@ ggmap(map, extent="device")+
 
 
 ```
+![](utah.pdf)
 ---
