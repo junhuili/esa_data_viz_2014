@@ -1,5 +1,5 @@
-# ggmap Example.
-Two simple examples showing how to make quick-and-easy study area maps using ggmap. 
+# ggmap Example
+Two simple examples showing how to make quick-and-easy study area maps using ggmap. The trickiest thing is to get the ``zoom`` argument in ``get_map()`` correct -- sometimes it takes a couple tries to get it right. More on ``ggmap`` can be found here: http://cran.r-project.org/web/packages/ggmap/ggmap.pdf. 
 
 ---
 
