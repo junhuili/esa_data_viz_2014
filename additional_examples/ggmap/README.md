@@ -41,5 +41,5 @@ ggmap(map, extent="device")+
 
 
 ```
-![](utah.pdf)
+![](utah.png)
 ---
