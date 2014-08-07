@@ -23,7 +23,7 @@ mapCA <- get_map(location="california", source ="stamen", maptype="toner", zoom=
 ggmap(mapCA, extent="device")+
   geom_point(data=confPt, aes(x=lon, y=lat), color="dodgerblue", size=5)
 ```
-![](california.pdf)
+![](california.png)
 
 ```{r maps2, warning = FALSE}
 # More examples
