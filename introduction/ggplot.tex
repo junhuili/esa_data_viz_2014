@@ -1,4 +1,4 @@
-% Intro slides for WK-10 ``Data Visualization Using R''
+% Slides for WK-10 ``Data Visualization Using R''
 % Ecological Society of America meeting
 % August 2014 - Sacramento, CA
 %
@@ -92,7 +92,7 @@
 % \SweaveOpts{concordance=TRUE} % deprecated
 
 \title{Data Visualization Using R \& ggplot2}
-\author{Naupaka Zimmerman \and Andrew Tredennick}
+\author{Naupaka Zimmerman (@naupakaz) \linebreak Andrew Tredennick (@ATredennick) \linebreak \linebreak Hat tip to Karthik Ram (@\_inundata) for original slides \linebreak}
 \date{August 10, 2014}
 \maketitle
 
@@ -432,7 +432,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))}
- \hlopt{+} \hlkwd{geom_point}\hlstd{()}
+    \hlopt{+} \hlkwd{geom_point}\hlstd{()}
 
 \hlstd{myplot} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))}
 \hlstd{myplot} \hlopt{+} \hlkwd{geom_point}\hlstd{()}
@@ -465,7 +465,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()}
+    \hlkwd{geom_point}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -486,7 +486,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
+    \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -507,7 +507,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
+    \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -528,7 +528,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
+    \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \hlcom{# Why aes(shape = Species)?}
 \end{alltt}
 \end{kframe}
@@ -689,8 +689,8 @@ See \texttt{?geom\_boxplot} for list of options
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()} \hlopt{+}
-\hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)}
+    \hlkwd{geom_point}\hlstd{()} \hlopt{+}
+    \hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)}
 \end{alltt}
 \end{kframe}
 
@@ -711,8 +711,8 @@ See \texttt{?geom\_boxplot} for list of options
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()} \hlopt{+}
-\hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
+    \hlkwd{geom_point}\hlstd{()} \hlopt{+}
+    \hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
 \end{alltt}
 \end{kframe}
 
@@ -733,8 +733,8 @@ See \texttt{?geom\_boxplot} for list of options
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()} \hlopt{+}
-\hlkwd{facet_wrap}\hlstd{(} \hlopt{~} \hlstd{Species)} \hlcom{# notice lack of .}
+    \hlkwd{geom_point}\hlstd{()} \hlopt{+}
+    \hlkwd{facet_wrap}\hlstd{(} \hlopt{~} \hlstd{Species)} \hlcom{# notice lack of .}
 \end{alltt}
 \end{kframe}
 
@@ -825,8 +825,8 @@ See \texttt{?geom\_boxplot} for list of options
 \begin{alltt}
 \hlstd{df}  \hlkwb{<-} \hlkwd{melt}\hlstd{(iris,} \hlkwc{id.vars} \hlstd{=} \hlstr{"Species"}\hlstd{)}
 \hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
-\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)} \hlopt{+}
-\hlkwd{scale_fill_brewer}\hlstd{(}\hlkwc{palette} \hlstd{=} \hlstr{"Set1"}\hlstd{)}
+    \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_fill_brewer}\hlstd{(}\hlkwc{palette} \hlstd{=} \hlstr{"Set1"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -847,9 +847,9 @@ See \texttt{?geom\_boxplot} for list of options
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{()} \hlopt{+}
-\hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)} \hlopt{+}
-\hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"red"}\hlstd{,} \hlstr{"green"}\hlstd{,} \hlstr{"blue"}\hlstd{))}
+    \hlkwd{geom_point}\hlstd{()} \hlopt{+}
+    \hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)} \hlopt{+}
+    \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"red"}\hlstd{,} \hlstr{"green"}\hlstd{,} \hlstr{"blue"}\hlstd{))}
 \end{alltt}
 \end{kframe}
 
@@ -883,9 +883,9 @@ See \texttt{?geom\_boxplot} for list of options
 \begin{alltt}
 \hlkwd{library}\hlstd{(MASS)}
 \hlkwd{ggplot}\hlstd{(birthwt,} \hlkwd{aes}\hlstd{(}\hlkwd{factor}\hlstd{(race), bwt))} \hlopt{+}
-\hlkwd{geom_boxplot}\hlstd{(}\hlkwc{width} \hlstd{=} \hlnum{.2}\hlstd{)} \hlopt{+}
-\hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= (}\hlkwd{paste0}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,} \hlstr{" Kg"}\hlstd{)),}
-\hlkwc{breaks} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{1000}\hlstd{,} \hlnum{4000}\hlstd{,} \hlkwc{by} \hlstd{=} \hlnum{1000}\hlstd{))}
+    \hlkwd{geom_boxplot}\hlstd{(}\hlkwc{width} \hlstd{=} \hlnum{.2}\hlstd{)} \hlopt{+}
+    \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= (}\hlkwd{paste0}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,} \hlstr{" Kg"}\hlstd{)),}
+        \hlkwc{breaks} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{1000}\hlstd{,} \hlnum{4000}\hlstd{,} \hlkwc{by} \hlstd{=} \hlnum{1000}\hlstd{))}
 \end{alltt}
 \end{kframe}
 
@@ -1020,7 +1020,7 @@ See \texttt{?geom\_histogram} for list of options
 \begin{alltt}
 \hlstd{climate} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{"../data/climate.csv"}\hlstd{,} \hlkwc{header} \hlstd{= T)}
 \hlkwd{ggplot}\hlstd{(climate,} \hlkwd{aes}\hlstd{(Year, Anomaly10y))} \hlopt{+}
-\hlkwd{geom_line}\hlstd{()}
+    \hlkwd{geom_line}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -1050,10 +1050,10 @@ We can also plot confidence regions
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(climate,} \hlkwd{aes}\hlstd{(Year, Anomaly10y))} \hlopt{+}
-\hlkwd{geom_ribbon}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{ymin} \hlstd{= Anomaly10y} \hlopt{-} \hlstd{Unc10y,}
-\hlkwc{ymax} \hlstd{= Anomaly10y} \hlopt{+} \hlstd{Unc10y),}
-\hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{.1}\hlstd{)} \hlopt{+}
-\hlkwd{geom_line}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"steelblue"}\hlstd{)}
+    \hlkwd{geom_ribbon}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{ymin} \hlstd{= Anomaly10y} \hlopt{-} \hlstd{Unc10y,}
+        \hlkwc{ymax} \hlstd{= Anomaly10y} \hlopt{+} \hlstd{Unc10y),}
+        \hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{.1}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_line}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"steelblue"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1121,7 +1121,7 @@ We can also plot confidence regions
 \begin{alltt}
 \hlstd{df}  \hlkwb{<-} \hlkwd{melt}\hlstd{(iris,} \hlkwc{id.vars} \hlstd{=} \hlstr{"Species"}\hlstd{)}
 \hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
-\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{)}
+    \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1142,7 +1142,7 @@ We can also plot confidence regions
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
-\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)}
+    \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1163,7 +1163,7 @@ What's going on with the y axis?
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
-\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position}\hlstd{=}\hlstr{"dodge"}\hlstd{,} \hlkwc{color}\hlstd{=}\hlstr{"black"}\hlstd{)}
+    \hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position}\hlstd{=}\hlstr{"dodge"}\hlstd{,} \hlkwc{color}\hlstd{=}\hlstr{"black"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1249,7 +1249,7 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(waiting))} \hlopt{+}
-\hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.1}\hlstd{)}
+    \hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.1}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1269,7 +1269,7 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(waiting))} \hlopt{+}
-\hlkwd{geom_line}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"density"}\hlstd{)}
+    \hlkwd{geom_line}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"density"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1296,8 +1296,8 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
-\hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)}
+    \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1317,9 +1317,9 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
-\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
-\hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)} \hlopt{+}
-\hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
+    \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
+    \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)} \hlopt{+}
+    \hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
 \end{alltt}
 \end{kframe}
 
@@ -1399,7 +1399,7 @@ Themes are a great way to define custom plots.
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Adding themes}
+\frametitle{A themed plot}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
 \includegraphics[width=.75\linewidth]{figure/facet_wrap_theme_execc} 
@@ -1438,7 +1438,7 @@ Themes are a great way to define custom plots.
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Yes that's a thing}
+\frametitle{Yup, that's a thing}
 \begin{center}
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}

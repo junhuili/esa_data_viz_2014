@@ -1,4 +1,4 @@
-% Intro slides for WK-10 ``Data Visualization Using R''
+% Slides for WK-10 ``Data Visualization Using R''
 % Ecological Society of America meeting
 % August 2014 - Sacramento, CA
 %
@@ -56,7 +56,7 @@ require(reshape2)
 require(plyr)
 @ 
 \title{Data Visualization Using R \& ggplot2}
-\author{Naupaka Zimmerman \and Andrew Tredennick}
+\author{Naupaka Zimmerman (@naupakaz) \linebreak Andrew Tredennick (@ATredennick) \linebreak \linebreak Hat tip to Karthik Ram (@\_inundata) for original slides \linebreak}
 \date{August 10, 2014}
 \maketitle
 
@@ -313,7 +313,7 @@ summary(myplot)
 \frametitle{Basic structure}
 <<first_plotb , eval=FALSE, tidy=FALSE>>=
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
- + geom_point()
+    + geom_point()
 
 myplot <- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width))
 myplot + geom_point()
@@ -342,7 +342,7 @@ myplot + geom_point()
 \frametitle{Let's try an example}
 <<first_plot , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
-geom_point()
+    geom_point()
 @
 \end{frame}
 
@@ -352,7 +352,7 @@ geom_point()
 \frametitle{Changing the aesthetics of a geom: \\Increase the size of points}
 <<first_plot_size , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) +
-geom_point(size = 3)
+    geom_point(size = 3)
 @
 \end{frame}
 
@@ -362,7 +362,7 @@ geom_point(size = 3)
 \frametitle{Changing the aesthetics of a geom: \\Add some color}
 <<first_plot_color , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 3)
+    geom_point(size = 3)
 @
 \end{frame}
 
@@ -372,7 +372,7 @@ geom_point(size = 3)
 \frametitle{Changing the aesthetics of a geom: \\Differentiate points by shape}
 <<first_plot_shape , fig.width=6, fig.height=3.5, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(aes(shape = Species), size = 3)
+    geom_point(aes(shape = Species), size = 3)
 # Why aes(shape = Species)?
 @
 \end{frame}
@@ -487,8 +487,8 @@ summary(myplot)
 \frametitle{Faceting: single column, multiple rows}
 <<facetgrid1, eval = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point() +
-facet_grid(Species ~ .)
+    geom_point() +
+    facet_grid(Species ~ .)
 @
 \end{frame}
 
@@ -498,8 +498,8 @@ facet_grid(Species ~ .)
 \frametitle{Faceting: single row, multiple columns}
 <<facet_grid2, eval = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center', tidy= FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point() +
-facet_grid(. ~ Species)
+    geom_point() +
+    facet_grid(. ~ Species)
 @
 \end{frame}
 
@@ -509,8 +509,8 @@ facet_grid(. ~ Species)
 \frametitle{or just wrap your facets}
 <<facet_wrap, eval = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center', tidy = FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point() +
-facet_wrap( ~ Species) # notice lack of .
+    geom_point() +
+    facet_wrap( ~ Species) # notice lack of .
 @
 \end{frame}
 
@@ -582,8 +582,8 @@ display.brewer.all()
 <<barcolors, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 df  <- melt(iris, id.vars = "Species")
 ggplot(df, aes(Species, value, fill = variable)) +
-geom_bar(stat = "identity", position = "dodge") +
-scale_fill_brewer(palette = "Set1")
+    geom_bar(stat = "identity", position = "dodge") +
+    scale_fill_brewer(palette = "Set1")
 @
 \end{frame}
 
@@ -593,9 +593,9 @@ scale_fill_brewer(palette = "Set1")
 \frametitle{Manual color scale}
 <<facetgridcolors, eval = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point() +
-facet_grid(Species ~ .) +
-scale_color_manual(values = c("red", "green", "blue"))
+    geom_point() +
+    facet_grid(Species ~ .) +
+    scale_color_manual(values = c("red", "green", "blue"))
 @
 \end{frame}
 
@@ -618,9 +618,9 @@ scale_color_manual(values = c("red", "green", "blue"))
 <<boxplots3, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 library(MASS)
 ggplot(birthwt, aes(factor(race), bwt)) +
-geom_boxplot(width = .2) +
-scale_y_continuous(labels = (paste0(1:4, " Kg")),
-breaks = seq(1000, 4000, by = 1000))
+    geom_boxplot(width = .2) +
+    scale_y_continuous(labels = (paste0(1:4, " Kg")),
+        breaks = seq(1000, 4000, by = 1000))
 @
 \end{frame}
 
@@ -718,7 +718,7 @@ colour = "black")
 <<linea , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 climate <- read.csv("../data/climate.csv", header = T)
 ggplot(climate, aes(Year, Anomaly10y)) +
-geom_line()
+    geom_line()
 @
 \begin{flushright}
 \begingroup
@@ -737,10 +737,10 @@ geom_line()
 We can also plot confidence regions
 <<lineb, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(climate, aes(Year, Anomaly10y)) +
-geom_ribbon(aes(ymin = Anomaly10y - Unc10y,
-ymax = Anomaly10y + Unc10y),
-fill = "blue", alpha = .1) +
-geom_line(color = "steelblue")
+    geom_ribbon(aes(ymin = Anomaly10y - Unc10y,
+        ymax = Anomaly10y + Unc10y),
+        fill = "blue", alpha = .1) +
+    geom_line(color = "steelblue")
 @
 \end{frame}
 
@@ -783,7 +783,7 @@ geom_bar(stat = "identity")
 <<bartwo, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 df  <- melt(iris, id.vars = "Species")
 ggplot(df, aes(Species, value, fill = variable)) +
-geom_bar(stat = "identity")
+    geom_bar(stat = "identity")
 @
 \end{frame}
 
@@ -793,7 +793,7 @@ geom_bar(stat = "identity")
 \begin{frame}[fragile]
 <<barthree, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 ggplot(df, aes(Species, value, fill = variable)) +
-geom_bar(stat = "identity", position = "dodge")
+    geom_bar(stat = "identity", position = "dodge")
 @
 What's going on with the y axis?
 \end{frame}
@@ -803,7 +803,7 @@ What's going on with the y axis?
 \begin{frame}[fragile]
 <<barthree2, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 ggplot(df, aes(Species, value, fill = variable)) + 
-geom_bar(stat = "identity", position="dodge", color="black")
+    geom_bar(stat = "identity", position="dodge", color="black")
 @
 \end{frame}
 
@@ -814,7 +814,7 @@ geom_bar(stat = "identity", position="dodge", color="black")
 Using the d2 dataset you created earlier, generate this plot below. Take a quick look at the data first to see if it needs to be binned.
 <<ex3, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', echo = FALSE>>=
 ggplot(d2, aes(clarity, fill = cut)) +
-geom_bar(position = "dodge",stat = "bin") + theme_gray()
+    geom_bar(position = "dodge",stat = "bin") + theme_gray()
 @
 \end{frame}
 
@@ -858,7 +858,7 @@ ggplot(faithful, aes(waiting)) + geom_density()
 \frametitle{Density plots}
 <<densityonefove , eval=TRUE, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center',  tidy=FALSE>>=
 ggplot(faithful, aes(waiting)) +
-geom_density(fill = "blue", alpha = 0.1)
+    geom_density(fill = "blue", alpha = 0.1)
 @
 \end{frame}
 
@@ -867,7 +867,7 @@ geom_density(fill = "blue", alpha = 0.1)
 \begin{frame}[fragile]
 <<densitytwo , , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 ggplot(faithful, aes(waiting)) +
-geom_line(stat = "density")
+    geom_line(stat = "density")
 @
 \end{frame}
 
@@ -883,8 +883,8 @@ geom_line(stat = "density")
 \begin{frame}[fragile]
 <<adding_stats,, eval = TRUE, fig.width=5, fig.height=4, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(aes(shape = Species), size = 3) +
-geom_smooth(method = "lm")
+    geom_point(aes(shape = Species), size = 3) +
+    geom_smooth(method = "lm")
 @
 \end{frame}
 
@@ -893,9 +893,9 @@ geom_smooth(method = "lm")
 \begin{frame}[fragile]
 <<adding_stats2,, eval = TRUE, tidy=FALSE, fig.width=7, fig.height=4, out.width='.75\\linewidth', fig.align='center'>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(aes(shape = Species), size = 3) +
-geom_smooth(method = "lm") +
-facet_grid(. ~ Species)
+    geom_point(aes(shape = Species), size = 3) +
+    geom_smooth(method = "lm") +
+    facet_grid(. ~ Species)
 @
 \end{frame}
 
@@ -986,7 +986,7 @@ library(ggthemes)
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Yes that's a thing}
+\frametitle{Yup, that's a thing}
 \begin{center}
 <<facet_wrap_theme_exec_royal, eval = TRUE, echo = TRUE, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.align='center'>>=
 # install.packages('wesanderson')
