@@ -1,4 +1,3 @@
-cd ~/Github/esa_data_viz/Intro_lecture
 rm ggplot.tex
 Rscript -e "library(knitr); knit('ggplot.Rnw', quiet = TRUE)"
 pdflatex ggplot.tex

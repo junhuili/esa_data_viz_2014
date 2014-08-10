@@ -1,10 +1,10 @@
-% Intro slides for WK-5 ``Data Visualization Using R''
+% Intro slides for WK-10 ``Data Visualization Using R''
 % Ecological Society of America meeting
-% August 2013
+% August 2014 - Sacramento, CA
 %
 % Original slides by: Karthik Ram, karthik.ram@gmail.com
 % Modified by: Naupaka Zimmerman, naupaka@gmail.com
-% Licence, CC-BY
+% Licence, CC-BY 4.0
 
 \documentclass{beamer}\usepackage[]{graphicx}\usepackage[]{color}
 %% maxwidth is the original width if it is less than linewidth
@@ -84,19 +84,16 @@
 % Setting up some knitr options
 
 
-
 % --------------------------------------------------------------
 % --------------------------------------------------------------
 % --------------------------------------------------------------
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-
 \begin{document}
 % \SweaveOpts{concordance=TRUE} % deprecated
 
-
 \title{Data Visualization Using R \& ggplot2}
-\author{Naupaka Zimmerman \and Karthik Ram \and Andrew Tredennick}
-\date{August 4, 2013}
+\author{Naupaka Zimmerman \and Andrew Tredennick}
+\date{August 10, 2014}
 \maketitle
 
 % --------------------------------------------------------------
@@ -107,22 +104,22 @@ Install some packages
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{install.packages}(\hlstr{"ggplot2"}, dependencies = TRUE)
-\hlkwd{install.packages}(\hlstr{"plyr"})
-\hlkwd{install.packages}(\hlstr{"ggthemes"})
-\hlkwd{install.packages}(\hlstr{"reshape2"})
-\hlkwd{install.packages}(\hlstr{"gridExtra"})
-\hlkwd{install.packages}(\hlstr{"devtools"})
+\hlkwd{install.packages}\hlstd{(}\hlstr{"ggplot2"}\hlstd{,} \hlkwc{dependencies} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"plyr"}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"ggthemes"}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"reshape2"}\hlstd{)}
+\hlcom{# for some of the examples towards the end:}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"gridExtra"}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"devtools"}\hlstd{)}
 \hlcom{# Then a few packages to acquire data from the web to visualize}
-\hlkwd{install.packages}(\hlstr{"rfisheries"})
-\hlkwd{install.packages}(\hlstr{"rgbif"})
-\hlkwd{install.packages}(\hlstr{"taxize"})
+\hlkwd{install.packages}\hlstd{(}\hlstr{"rfisheries"}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"rgbif"}\hlstd{)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"taxize"}\hlstd{)}
 \hlcom{# optional}
-\hlkwd{install_github}(\hlstr{"rWBclimate"}, \hlstr{"ropensci"})
+\hlkwd{install_github}\hlstd{(}\hlstr{"rWBclimate"}\hlstd{,} \hlstr{"ropensci"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -200,7 +197,7 @@ Install some packages
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{head}(iris)
+\hlkwd{head}\hlstd{(iris)}
 \end{alltt}
 \begin{verbatim}
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -213,7 +210,6 @@ Install some packages
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -243,7 +239,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-iris[1:2, ]
+\hlstd{iris[}\hlnum{1}\hlopt{:}\hlnum{2}\hlstd{, ]}
 \end{alltt}
 \begin{verbatim}
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -253,8 +249,8 @@ iris[1:2, ]
 \begin{alltt}
 \hlcom{# Note the use of the '.' function to allow 'Species' to be used }
 \hlcom{# without quoting}
-\hlkwd{ddply}(iris, \hlkwd{.}(Species), summarize, 
-      mean.Sep.Wid = \hlkwd{mean}(Sepal.Width, na.rm = TRUE))
+\hlkwd{ddply}\hlstd{(iris,} \hlkwd{.}\hlstd{(Species), summarize,}
+      \hlkwc{mean.Sep.Wid} \hlstd{=} \hlkwd{mean}\hlstd{(Sepal.Width,} \hlkwc{na.rm} \hlstd{=} \hlnum{TRUE}\hlstd{))}
 \end{alltt}
 \begin{verbatim}
 ##      Species mean.Sep.Wid
@@ -264,7 +260,6 @@ iris[1:2, ]
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -290,7 +285,7 @@ These two packages are the swiss army knives of \texttt{R}.
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-iris[1:2, ]
+\hlstd{iris[}\hlnum{1}\hlopt{:}\hlnum{2}\hlstd{, ]}
 \end{alltt}
 \begin{verbatim}
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -298,8 +293,8 @@ iris[1:2, ]
 ## 2          4.9         3.0          1.4         0.2  setosa
 \end{verbatim}
 \begin{alltt}
-df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
-df[1:2, ]
+\hlstd{df}  \hlkwb{<-} \hlkwd{melt}\hlstd{(iris,} \hlkwc{id.vars} \hlstd{=} \hlstr{"Species"}\hlstd{)}
+\hlstd{df[}\hlnum{1}\hlopt{:}\hlnum{2}\hlstd{, ]}
 \end{alltt}
 \begin{verbatim}
 ##   Species     variable value
@@ -308,7 +303,6 @@ df[1:2, ]
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -318,7 +312,7 @@ df[1:2, ]
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-df[1:2, ]
+\hlstd{df[}\hlnum{1}\hlopt{:}\hlnum{2}\hlstd{, ]}
 \end{alltt}
 \begin{verbatim}
 ##   Species     variable value
@@ -326,7 +320,7 @@ df[1:2, ]
 ## 2  setosa Sepal.Length   4.9
 \end{verbatim}
 \begin{alltt}
-\hlkwd{dcast}(df, Species ~ variable, mean)
+\hlkwd{dcast}\hlstd{(df, Species} \hlopt{~} \hlstd{variable, mean)}
 \end{alltt}
 \begin{verbatim}
 ##      Species Sepal.Length Sepal.Width Petal.Length
@@ -340,7 +334,6 @@ df[1:2, ]
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -386,8 +379,8 @@ df[1:2, ]
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-myplot <- \hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Width))
-\hlkwd{summary}(myplot)
+\hlstd{myplot} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))}
+\hlkwd{summary}\hlstd{(myplot)}
 \end{alltt}
 \begin{verbatim}
 ## data: Sepal.Length, Sepal.Width, Petal.Length,
@@ -397,7 +390,6 @@ myplot <- \hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Wi
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -439,15 +431,14 @@ myplot <- \hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Wi
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Width))
- + \hlkwd{geom_point}()
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))}
+ \hlopt{+} \hlkwd{geom_point}\hlstd{()}
 
-myplot <- \hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Width))
-myplot + \hlkwd{geom_point}()
+\hlstd{myplot} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))}
+\hlstd{myplot} \hlopt{+} \hlkwd{geom_point}\hlstd{()}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \begin{itemize}
 \item Specify the data and variables inside the \texttt{ggplot} function.
 \item Anything else that goes in here becomes a global setting.
@@ -473,8 +464,8 @@ myplot + \hlkwd{geom_point}()
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Width)) +
-\hlkwd{geom_point}()
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -485,7 +476,6 @@ myplot + \hlkwd{geom_point}()
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -495,8 +485,8 @@ myplot + \hlkwd{geom_point}()
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(data = iris, \hlkwd{aes}(x = Sepal.Length, y = Sepal.Width)) +
-\hlkwd{geom_point}(size = 3)
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= iris,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= Sepal.Length,} \hlkwc{y} \hlstd{= Sepal.Width))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -507,7 +497,6 @@ myplot + \hlkwd{geom_point}()
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -517,8 +506,8 @@ myplot + \hlkwd{geom_point}()
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}(size = 3)
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -529,7 +518,6 @@ myplot + \hlkwd{geom_point}()
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -539,8 +527,8 @@ myplot + \hlkwd{geom_point}()
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}(\hlkwd{aes}(shape = Species), size = 3)
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
 \hlcom{# Why aes(shape = Species)?}
 \end{alltt}
 \end{kframe}
@@ -552,7 +540,6 @@ myplot + \hlkwd{geom_point}()
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -563,11 +550,10 @@ myplot + \hlkwd{geom_point}()
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
 \hlcom{# Make a small sample of the diamonds dataset}
-d2 <- diamonds[\hlkwd{sample}(1:\hlkwd{dim}(diamonds)[1], 1000), ]
+\hlstd{d2} \hlkwb{<-} \hlstd{diamonds[}\hlkwd{sample}\hlstd{(}\hlnum{1}\hlopt{:}\hlkwd{dim}\hlstd{(diamonds)[}\hlnum{1}\hlstd{],} \hlnum{1000}\hlstd{), ]}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 Then generate this plot below.
 
 \begin{knitrout}\footnotesize
@@ -580,7 +566,6 @@ Then generate this plot below.
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -624,8 +609,8 @@ See \texttt{?geom\_boxplot} for list of options
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{library}(MASS)
-\hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlkwd{geom_boxplot}()
+\hlkwd{library}\hlstd{(MASS)}
+\hlkwd{ggplot}\hlstd{(birthwt,} \hlkwd{aes}\hlstd{(}\hlkwd{factor}\hlstd{(race), bwt))} \hlopt{+} \hlkwd{geom_boxplot}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -636,7 +621,6 @@ See \texttt{?geom\_boxplot} for list of options
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -646,8 +630,8 @@ See \texttt{?geom\_boxplot} for list of options
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlkwd{geom_boxplot}()
-\hlkwd{summary}(myplot)
+\hlstd{myplot} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(birthwt,} \hlkwd{aes}\hlstd{(}\hlkwd{factor}\hlstd{(race), bwt))} \hlopt{+} \hlkwd{geom_boxplot}\hlstd{()}
+\hlkwd{summary}\hlstd{(myplot)}
 \end{alltt}
 \begin{verbatim}
 ## data: low, age, lwt, race, smoke, ptl, ht, ui, ftv,
@@ -655,13 +639,12 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 ## mapping:  x = factor(race), y = bwt
 ## faceting: facet_null() 
 ## -----------------------------------
-## geom_boxplot: outlier.colour = black, outlier.shape = 16, outlier.size = 2, notch = FALSE, notchwidth = 0.5 
+## geom_boxplot: outlier.colour = black, outlier.shape = 16, outlier.size = 2, notch = FALSE, notchwidth = 0.5, varwidth = FALSE 
 ## stat_boxplot:  
 ## position_dodge: (width = NULL, height = NULL)
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -705,9 +688,9 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}() +
-\hlkwd{facet_grid}(Species ~ .)
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{()} \hlopt{+}
+\hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)}
 \end{alltt}
 \end{kframe}
 
@@ -718,7 +701,6 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -728,9 +710,9 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}() +
-\hlkwd{facet_grid}(. ~ Species)
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{()} \hlopt{+}
+\hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
 \end{alltt}
 \end{kframe}
 
@@ -741,7 +723,6 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -751,9 +732,9 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}() +
-\hlkwd{facet_wrap}( ~ Species) \hlcom{# notice lack of .}
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{()} \hlopt{+}
+\hlkwd{facet_wrap}\hlstd{(} \hlopt{~} \hlstd{Species)} \hlcom{# notice lack of .}
 \end{alltt}
 \end{kframe}
 
@@ -764,7 +745,6 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -809,15 +789,14 @@ myplot <- \hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) + \hlk
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{aes}(color = variable)  \hlcom{# mapping}
-color = \hlstr{"black"}  # setting
+\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{= variable)} \hlcom{# mapping}
+\hlstd{color} \hlkwb{=} \hlstr{"black"} \hlcom{# setting}
 
 \hlcom{# Or add it as a scale}
-\hlkwd{scale_fill_manual}(values = \hlkwd{c}(\hlstr{"color1"}, \hlstr{"color2"}))
+\hlkwd{scale_fill_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"color1"}\hlstd{,} \hlstr{"color2"}\hlstd{))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -827,12 +806,11 @@ color = \hlstr{"black"}  # setting
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{library}(RColorBrewer)
-\hlkwd{display.brewer.all}()
+\hlkwd{library}\hlstd{(RColorBrewer)}
+\hlkwd{display.brewer.all}\hlstd{()}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \begin{center}
 \includegraphics[scale=0.25]{images/color_palette.png}
 \end{center}
@@ -845,10 +823,10 @@ color = \hlstr{"black"}  # setting
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
-\hlkwd{ggplot}(df, \hlkwd{aes}(Species, value, fill = variable)) +
-\hlkwd{geom_bar}(stat = \hlstr{"identity"}, position = \hlstr{"dodge"}) +
-\hlkwd{scale_fill_brewer}(palette = \hlstr{"Set1"})
+\hlstd{df}  \hlkwb{<-} \hlkwd{melt}\hlstd{(iris,} \hlkwc{id.vars} \hlstd{=} \hlstr{"Species"}\hlstd{)}
+\hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
+\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)} \hlopt{+}
+\hlkwd{scale_fill_brewer}\hlstd{(}\hlkwc{palette} \hlstd{=} \hlstr{"Set1"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -859,7 +837,6 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -869,10 +846,10 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}() +
-\hlkwd{facet_grid}(Species ~ .) +
-\hlkwd{scale_color_manual}(values = \hlkwd{c}(\hlstr{"red"}, \hlstr{"green"}, \hlstr{"blue"}))
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{()} \hlopt{+}
+\hlkwd{facet_grid}\hlstd{(Species} \hlopt{~} \hlstd{.)} \hlopt{+}
+\hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"red"}\hlstd{,} \hlstr{"green"}\hlstd{,} \hlstr{"blue"}\hlstd{))}
 \end{alltt}
 \end{kframe}
 
@@ -883,7 +860,6 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -905,11 +881,11 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{library}(MASS)
-\hlkwd{ggplot}(birthwt, \hlkwd{aes}(\hlkwd{factor}(race), bwt)) +
-\hlkwd{geom_boxplot}(width = .2) +
-\hlkwd{scale_y_continuous}(labels = (\hlkwd{paste0}(1:4, \hlstr{" Kg"})),
-breaks = \hlkwd{seq}(1000, 4000, by = 1000))
+\hlkwd{library}\hlstd{(MASS)}
+\hlkwd{ggplot}\hlstd{(birthwt,} \hlkwd{aes}\hlstd{(}\hlkwd{factor}\hlstd{(race), bwt))} \hlopt{+}
+\hlkwd{geom_boxplot}\hlstd{(}\hlkwc{width} \hlstd{=} \hlnum{.2}\hlstd{)} \hlopt{+}
+\hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{labels} \hlstd{= (}\hlkwd{paste0}\hlstd{(}\hlnum{1}\hlopt{:}\hlnum{4}\hlstd{,} \hlstr{" Kg"}\hlstd{)),}
+\hlkwc{breaks} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{1000}\hlstd{,} \hlnum{4000}\hlstd{,} \hlkwc{by} \hlstd{=} \hlnum{1000}\hlstd{))}
 \end{alltt}
 \end{kframe}
 
@@ -920,7 +896,6 @@ breaks = \hlkwd{seq}(1000, 4000, by = 1000))
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -930,15 +905,14 @@ breaks = \hlkwd{seq}(1000, 4000, by = 1000))
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{scale_fill_discrete}(); \hlkwd{scale_colour_discrete}()
-\hlkwd{scale_fill_hue}(); \hlkwd{scale_color_hue}()
-\hlkwd{scale_fill_manual}();  \hlkwd{scale_color_manual}()
-\hlkwd{scale_fill_brewer}(); \hlkwd{scale_color_brewer}()
-\hlkwd{scale_linetype}(); \hlkwd{scale_shape_manual}()
+\hlkwd{scale_fill_discrete}\hlstd{();} \hlkwd{scale_colour_discrete}\hlstd{()}
+\hlkwd{scale_fill_hue}\hlstd{();} \hlkwd{scale_color_hue}\hlstd{()}
+\hlkwd{scale_fill_manual}\hlstd{();}  \hlkwd{scale_color_manual}\hlstd{()}
+\hlkwd{scale_fill_brewer}\hlstd{();} \hlkwd{scale_color_brewer}\hlstd{()}
+\hlkwd{scale_linetype}\hlstd{();} \hlkwd{scale_shape_manual}\hlstd{()}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -996,8 +970,8 @@ See \texttt{?geom\_histogram} for list of options
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-h <- \hlkwd{ggplot}(faithful, \hlkwd{aes}(x = waiting))
-h + \hlkwd{geom_histogram}(binwidth = 30, colour = \hlstr{"black"})
+\hlstd{h} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= waiting))}
+\hlstd{h} \hlopt{+} \hlkwd{geom_histogram}\hlstd{(}\hlkwc{binwidth} \hlstd{=} \hlnum{30}\hlstd{,} \hlkwc{colour} \hlstd{=} \hlstr{"black"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1008,7 +982,6 @@ h + \hlkwd{geom_histogram}(binwidth = 30, colour = \hlstr{"black"})
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1017,9 +990,9 @@ h + \hlkwd{geom_histogram}(binwidth = 30, colour = \hlstr{"black"})
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-h <- \hlkwd{ggplot}(faithful, \hlkwd{aes}(x = waiting))
-h + \hlkwd{geom_histogram}(binwidth = 8, fill = \hlstr{"steelblue"},
-colour = \hlstr{"black"})
+\hlstd{h} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= waiting))}
+\hlstd{h} \hlopt{+} \hlkwd{geom_histogram}\hlstd{(}\hlkwc{binwidth} \hlstd{=} \hlnum{8}\hlstd{,} \hlkwc{fill} \hlstd{=} \hlstr{"steelblue"}\hlstd{,}
+\hlkwc{colour} \hlstd{=} \hlstr{"black"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1030,7 +1003,6 @@ colour = \hlstr{"black"})
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1043,15 +1015,12 @@ colour = \hlstr{"black"})
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-
-
-% climate <- read.csv(text = RCurl::getURL('https://raw.github.com/karthikram/ggplot-lecture/master/climate.csv'))
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-climate <- \hlkwd{read.csv}(\hlstr{"../data/climate.csv"}, header = T)
-\hlkwd{ggplot}(climate, \hlkwd{aes}(Year, Anomaly10y)) +
-\hlkwd{geom_line}()
+\hlstd{climate} \hlkwb{<-} \hlkwd{read.csv}\hlstd{(}\hlstr{"../data/climate.csv"}\hlstd{,} \hlkwc{header} \hlstd{= T)}
+\hlkwd{ggplot}\hlstd{(climate,} \hlkwd{aes}\hlstd{(Year, Anomaly10y))} \hlopt{+}
+\hlkwd{geom_line}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -1062,7 +1031,6 @@ climate <- \hlkwd{read.csv}(\hlstr{"../data/climate.csv"}, header = T)
 
 
 \end{knitrout}
-
 \begin{flushright}
 \begingroup
     \fontsize{6pt}{12pt}\selectfont
@@ -1081,11 +1049,11 @@ We can also plot confidence regions
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(climate, \hlkwd{aes}(Year, Anomaly10y)) +
-\hlkwd{geom_ribbon}(\hlkwd{aes}(ymin = Anomaly10y - Unc10y,
-ymax = Anomaly10y + Unc10y),
-fill = \hlstr{"blue"}, alpha = .1) +
-\hlkwd{geom_line}(color = \hlstr{"steelblue"})
+\hlkwd{ggplot}\hlstd{(climate,} \hlkwd{aes}\hlstd{(Year, Anomaly10y))} \hlopt{+}
+\hlkwd{geom_ribbon}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{ymin} \hlstd{= Anomaly10y} \hlopt{-} \hlstd{Unc10y,}
+\hlkwc{ymax} \hlstd{= Anomaly10y} \hlopt{+} \hlstd{Unc10y),}
+\hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{.1}\hlstd{)} \hlopt{+}
+\hlkwd{geom_line}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"steelblue"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1096,7 +1064,6 @@ fill = \hlstr{"blue"}, alpha = .1) +
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1116,7 +1083,6 @@ fill = \hlstr{"blue"}, alpha = .1) +
 
 \end{knitrout}
 
-
 \end{itemize}
 \end{frame}
 
@@ -1133,8 +1099,8 @@ fill = \hlstr{"blue"}, alpha = .1) +
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Species, Sepal.Length)) +
-\hlkwd{geom_bar}(stat = \hlstr{"identity"})
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Species, Sepal.Length))} \hlopt{+}
+\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1145,7 +1111,6 @@ fill = \hlstr{"blue"}, alpha = .1) +
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1154,9 +1119,9 @@ fill = \hlstr{"blue"}, alpha = .1) +
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
-\hlkwd{ggplot}(df, \hlkwd{aes}(Species, value, fill = variable)) +
-\hlkwd{geom_bar}(stat = \hlstr{"identity"})
+\hlstd{df}  \hlkwb{<-} \hlkwd{melt}\hlstd{(iris,} \hlkwc{id.vars} \hlstd{=} \hlstr{"Species"}\hlstd{)}
+\hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
+\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1167,7 +1132,6 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1177,8 +1141,8 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(df, \hlkwd{aes}(Species, value, fill = variable)) +
-\hlkwd{geom_bar}(stat = \hlstr{"identity"}, position = \hlstr{"dodge"})
+\hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
+\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1189,7 +1153,6 @@ df  <- \hlkwd{melt}(iris, id.vars = \hlstr{"Species"})
 
 
 \end{knitrout}
-
 What's going on with the y axis?
 \end{frame}
 
@@ -1199,8 +1162,8 @@ What's going on with the y axis?
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(df, \hlkwd{aes}(Species, value, fill = variable)) + 
-\hlkwd{geom_bar}(stat = \hlstr{"identity"}, position=\hlstr{"dodge"}, color=\hlstr{"black"})
+\hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(Species, value,} \hlkwc{fill} \hlstd{= variable))} \hlopt{+}
+\hlkwd{geom_bar}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{,} \hlkwc{position}\hlstd{=}\hlstr{"dodge"}\hlstd{,} \hlkwc{color}\hlstd{=}\hlstr{"black"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1211,7 +1174,6 @@ What's going on with the y axis?
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1229,7 +1191,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1250,7 +1211,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 \end{knitrout}
 
-
 \end{itemize}
 \end{frame}
 
@@ -1268,7 +1228,7 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(faithful, \hlkwd{aes}(waiting)) + \hlkwd{geom_density}()
+\hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(waiting))} \hlopt{+} \hlkwd{geom_density}\hlstd{()}
 \end{alltt}
 \end{kframe}
 
@@ -1279,7 +1239,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1289,8 +1248,8 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(faithful, \hlkwd{aes}(waiting)) +
-\hlkwd{geom_density}(fill = \hlstr{"blue"}, alpha = 0.1)
+\hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(waiting))} \hlopt{+}
+\hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"blue"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.1}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1301,7 +1260,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1310,8 +1268,8 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(faithful, \hlkwd{aes}(waiting)) +
-\hlkwd{geom_line}(stat = \hlstr{"density"})
+\hlkwd{ggplot}\hlstd{(faithful,} \hlkwd{aes}\hlstd{(waiting))} \hlopt{+}
+\hlkwd{geom_line}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{"density"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1322,7 +1280,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1338,9 +1295,9 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}(\hlkwd{aes}(shape = Species), size = 3) +
-\hlkwd{geom_smooth}(method = \hlstr{"lm"})
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
+\hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 
@@ -1351,7 +1308,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1360,10 +1316,10 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}(\hlkwd{aes}(shape = Species), size = 3) +
-\hlkwd{geom_smooth}(method = \hlstr{"lm"}) +
-\hlkwd{facet_grid}(. ~ Species)
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+\hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{shape} \hlstd{= Species),} \hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)} \hlopt{+}
+\hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)} \hlopt{+}
+\hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{Species)}
 \end{alltt}
 \end{kframe}
 
@@ -1374,7 +1330,6 @@ Using the d2 dataset you created earlier, generate this plot below. Take a quick
 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1392,12 +1347,34 @@ Themes are a great way to define custom plots.
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-+\hlkwd{theme}()
+\hlopt{+} \hlkwd{theme}\hlstd{()}
 \hlcom{# see ?theme() for more options}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+\end{frame}
 
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{A more basic theme}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+    \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{1.2}\hlstd{,} \hlkwc{shape} \hlstd{=} \hlnum{16}\hlstd{)} \hlopt{+}
+    \hlkwd{facet_wrap}\hlstd{(} \hlopt{~} \hlstd{Species)} \hlopt{+}
+    \hlkwd{theme_bw}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.75\linewidth]{figure/facet_wrapbw_theme} 
+
+}
+
+
+
+\end{knitrout}
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1407,17 +1384,16 @@ Themes are a great way to define custom plots.
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggplot}(iris, \hlkwd{aes}(Sepal.Length, Sepal.Width, color = Species)) +
-\hlkwd{geom_point}(size = 1.2, shape = 16) +
-\hlkwd{facet_wrap}( ~ Species) +
-\hlkwd{theme}(legend.key = \hlkwd{element_rect}(fill = NA),
-legend.position = \hlstr{"bottom"},
-strip.background = \hlkwd{element_rect}(fill = NA),
-axis.title.y = \hlkwd{element_text}(angle = 0))
+\hlkwd{ggplot}\hlstd{(iris,} \hlkwd{aes}\hlstd{(Sepal.Length, Sepal.Width,} \hlkwc{color} \hlstd{= Species))} \hlopt{+}
+    \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{1.2}\hlstd{,} \hlkwc{shape} \hlstd{=} \hlnum{16}\hlstd{)} \hlopt{+}
+    \hlkwd{facet_wrap}\hlstd{(} \hlopt{~} \hlstd{Species)} \hlopt{+}
+    \hlkwd{theme}\hlstd{(}\hlkwc{legend.key} \hlstd{=} \hlkwd{element_rect}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlnum{NA}\hlstd{),}
+        \hlkwc{legend.position} \hlstd{=} \hlstr{"bottom"}\hlstd{,}
+        \hlkwc{strip.background} \hlstd{=} \hlkwd{element_rect}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlnum{NA}\hlstd{),}
+        \hlkwc{axis.title.y} \hlstd{=} \hlkwd{element_text}\hlstd{(}\hlkwc{angle} \hlstd{=} \hlnum{0}\hlstd{))}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1429,7 +1405,6 @@ axis.title.y = \hlkwd{element_text}(angle = 0))
 \includegraphics[width=.75\linewidth]{figure/facet_wrap_theme_execc} 
 
 \end{knitrout}
-
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1439,17 +1414,50 @@ axis.title.y = \hlkwd{element_text}(angle = 0))
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{install.packages}(\hlstr{"ggthemes"})
-\hlkwd{library}(ggthemes)
+\hlkwd{install.packages}\hlstd{(}\hlstr{'ggthemes'}\hlstd{)}
+\hlkwd{library}\hlstd{(ggthemes)}
 \hlcom{# Then add one of these themes to your plot}
-+\hlkwd{theme_stata}()
-+\hlkwd{theme_excel}()
-+\hlkwd{theme_wsj}()
-+\hlkwd{theme_solarized}()
+ \hlopt{+} \hlkwd{theme_stata}\hlstd{()}
+ \hlopt{+} \hlkwd{theme_excel}\hlstd{()}
+ \hlopt{+} \hlkwd{theme_wsj}\hlstd{()}
+ \hlopt{+} \hlkwd{theme_solarized}\hlstd{()}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+\end{frame}
 
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Fan of Wes Anderson movies?}
+\begin{center}
+\includegraphics[scale=.12]{images/tenenbaums.png}
+\end{center}
+\end{frame}
+
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Yes that's a thing}
+\begin{center}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# install.packages('wesanderson')}
+\hlkwd{library}\hlstd{(}\hlstr{"wesanderson"}\hlstd{)}
+\hlcom{# display a palette}
+\hlkwd{display.wes.palette}\hlstd{(}\hlnum{4}\hlstd{,} \hlstr{"Royal1"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.75\linewidth]{figure/facet_wrap_theme_exec_royal} 
+
+}
+
+
+
+\end{knitrout}
+\end{center}
 \end{frame}
 
 % --------------------------------------------------------------
@@ -1466,27 +1474,25 @@ axis.title.y = \hlkwd{element_text}(angle = 0))
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-my_custom_plot <- \hlkwd{function}(df, title = \hlstr{""}, ...) \{
-    \hlkwd{ggplot}(df, ...) +
-    \hlkwd{ggtitle}(title) +
-    \hlkwd{whatever_geoms}() +
-    \hlkwd{theme}(...)
-\}
+\hlstd{my_custom_plot} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{df}\hlstd{,} \hlkwc{title} \hlstd{=} \hlstr{""}\hlstd{,} \hlkwc{...}\hlstd{) \{}
+    \hlkwd{ggplot}\hlstd{(df, ...)} \hlopt{+}
+    \hlkwd{ggtitle}\hlstd{(title)} \hlopt{+}
+    \hlkwd{whatever_geoms}\hlstd{()} \hlopt{+}
+    \hlkwd{theme}\hlstd{(...)}
+\hlstd{\}}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 Then just call your function to generate a plot.
 It's a lot easier to fix one function that do it over and over for many plots
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-plot1 <- \hlkwd{my_custom_plot}(dataset1, title = \hlstr{"Figure 1"})
+\hlstd{plot1} \hlkwb{<-} \hlkwd{my_custom_plot}\hlstd{(dataset1,} \hlkwc{title} \hlstd{=} \hlstr{"Figure 1"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 \end{frame}
 
@@ -1508,42 +1514,38 @@ plot1 <- \hlkwd{my_custom_plot}(dataset1, title = \hlstr{"Figure 1"})
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggsave}(\hlstr{"~/path/to/figure/filename.png"})
+\hlkwd{ggsave}\hlstd{(}\hlstr{'~/path/to/figure/filename.png'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \item If your plot is assigned to an object
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggsave}(plot1, file = \hlstr{"~/path/to/figure/filename.png"})
+\hlkwd{ggsave}\hlstd{(plot1,} \hlkwc{file} \hlstd{=} \hlstr{"~/path/to/figure/filename.png"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 
 \item Specify a size
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggsave}(file = \hlstr{"/path/to/figure/filename.png"}, width = 6,
-height =4)
+\hlkwd{ggsave}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"/path/to/figure/filename.png"}\hlstd{,} \hlkwc{width} \hlstd{=} \hlnum{6}\hlstd{,}
+\hlkwc{height} \hlstd{=}\hlnum{4}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \item or any format (pdf, png, eps, svg, jpg)
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlkwd{ggsave}(file = \hlstr{"/path/to/figure/filename.eps"})
-\hlkwd{ggsave}(file = \hlstr{"/path/to/figure/filename.jpg"})
-\hlkwd{ggsave}(file = \hlstr{"/path/to/figure/filename.pdf"})
+\hlkwd{ggsave}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"/path/to/figure/filename.eps"}\hlstd{)}
+\hlkwd{ggsave}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"/path/to/figure/filename.jpg"}\hlstd{)}
+\hlkwd{ggsave}\hlstd{(}\hlkwc{file} \hlstd{=} \hlstr{"/path/to/figure/filename.pdf"}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
-
 \end{itemize}
 \end{frame}
 

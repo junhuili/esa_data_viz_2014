@@ -1,10 +1,10 @@
-% Intro slides for WK-5 ``Data Visualization Using R''
+% Intro slides for WK-10 ``Data Visualization Using R''
 % Ecological Society of America meeting
-% August 2013
+% August 2014 - Sacramento, CA
 %
 % Original slides by: Karthik Ram, karthik.ram@gmail.com
 % Modified by: Naupaka Zimmerman, naupaka@gmail.com
-% Licence, CC-BY
+% Licence, CC-BY 4.0
 
 \documentclass{beamer}
 \usepackage{listings}
@@ -56,8 +56,8 @@ require(reshape2)
 require(plyr)
 @ 
 \title{Data Visualization Using R \& ggplot2}
-\author{Naupaka Zimmerman \and Karthik Ram \and Andrew Tredennick}
-\date{August 4, 2013}
+\author{Naupaka Zimmerman \and Andrew Tredennick}
+\date{August 10, 2014}
 \maketitle
 
 % --------------------------------------------------------------
@@ -70,6 +70,7 @@ install.packages("ggplot2", dependencies = TRUE)
 install.packages("plyr")
 install.packages("ggthemes")
 install.packages("reshape2")
+# for some of the examples towards the end:
 install.packages("gridExtra")
 install.packages("devtools")
 # Then a few packages to acquire data from the web to visualize
@@ -714,10 +715,6 @@ colour = "black")
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-<<line_setup, echo=FALSE>>=
-setwd('~/Github/esa_data_viz/Intro_lecture')
-@
-% climate <- read.csv(text = RCurl::getURL('https://raw.github.com/karthikram/ggplot-lecture/master/climate.csv'))
 <<linea , fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.show='hold', fig.align='center', tidy=FALSE>>=
 climate <- read.csv("../data/climate.csv", header = T)
 ggplot(climate, aes(Year, Anomaly10y)) +
@@ -923,30 +920,42 @@ Themes are a great way to define custom plots.
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{A themed plot}
-<<facet_wrap_theme, eval = FALSE, fig.width=4, fig.height=6, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
+\frametitle{A more basic theme}
+<<facet_wrapbw_theme, eval = TRUE, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
+    geom_point(size = 1.2, shape = 16) +
+    facet_wrap( ~ Species) +
+    theme_bw()
 @
 \end{frame}
 
 % --------------------------------------------------------------
 
 \begin{frame}[fragile]
-\frametitle{Adding themes}
+\frametitle{A themed plot}
+<<facet_wrap_theme, eval = FALSE, fig.width=4, fig.height=6, out.width='.75\\linewidth', fig.align='center', tidy=FALSE>>=
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
+    geom_point(size = 1.2, shape = 16) +
+    facet_wrap( ~ Species) +
+    theme(legend.key = element_rect(fill = NA),
+        legend.position = "bottom",
+        strip.background = element_rect(fill = NA),
+        axis.title.y = element_text(angle = 0))
+@
+\end{frame}
+
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{A themed plot}
 <<facet_wrap_theme_execc, eval = TRUE, echo = FALSE, fig.width=4, fig.height=3, out.width='.75\\linewidth'>>=
 ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) +
-geom_point(size = 1.2, shape = 16) +
-facet_wrap( ~ Species) +
-theme(legend.key = element_rect(fill = NA),
-legend.position = "bottom",
-strip.background = element_rect(fill = NA),
-axis.title.y = element_text(angle = 0))
+    geom_point(size = 1.2, shape = 16) +
+    facet_wrap( ~ Species) +
+    theme(legend.key = element_rect(fill = NA),
+        legend.position = "bottom",
+        strip.background = element_rect(fill = NA),
+        axis.title.y = element_text(angle = 0))
 @
 \end{frame}
 
@@ -954,7 +963,7 @@ axis.title.y = element_text(angle = 0))
 
 \begin{frame}[fragile]
 \frametitle{ggthemes library}
-<<facet_wrap_theme_exec, eval = FALSE, echo = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center'>>=
+<<facet_wrap_theme_exec_more, eval = FALSE, echo = TRUE, fig.width=4, fig.height=3, out.width='.75\\linewidth', fig.align='center'>>=
 install.packages('ggthemes')
 library(ggthemes)
 # Then add one of these themes to your plot
@@ -963,6 +972,29 @@ library(ggthemes)
  + theme_wsj()
  + theme_solarized()
 @
+\end{frame}
+
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Fan of Wes Anderson movies?}
+\begin{center}
+\includegraphics[scale=.12]{images/tenenbaums.png}
+\end{center}
+\end{frame}
+
+% --------------------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Yes that's a thing}
+\begin{center}
+<<facet_wrap_theme_exec_royal, eval = TRUE, echo = TRUE, fig.width=6, fig.height=4, out.width='.75\\linewidth', fig.align='center'>>=
+# install.packages('wesanderson')
+library("wesanderson")
+# display a palette
+display.wes.palette(4, "Royal1")
+@
+\end{center}
 \end{frame}
 
 % --------------------------------------------------------------
