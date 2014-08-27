@@ -26,6 +26,8 @@ install.packages("ggplot2", dependencies = TRUE)
 install.packages("plyr")
 install.packages("ggthemes")
 install.packages("reshape2")
+
+# the following packages are for the supplemental exercises only
 install.packages("gridExtra")
 install.packages("devtools")
 install.packages('cshapes')
