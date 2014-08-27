@@ -2,8 +2,6 @@
 
 Welcome to the GitHub repository for the data visualization using R and ggplot workshop at ESA 2014.
 
-### NOTE: This will be a work in progress until August 10th, 2014.
-
 **Location and time:** 
 Sunday, August 10, 2014    
 8:00 AM - 11:30 AM    
